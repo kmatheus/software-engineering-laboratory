@@ -10,3 +10,7 @@ Logs de texto simples são difíceis de analisar em larga escala. Além disso, s
 
 ### Resiliência Avançada: Exponential Backoff
 Implementei a estratégia de **Backoff Exponencial** para as retentativas. Em vez de sobrecarregar o serviço externo com tentativas em intervalos fixos, o sistema aumenta o tempo de espera progressivamente. Isso evita o fenômeno de "Thundering Herd" e aumenta as chances de sucesso conforme o serviço externo se estabiliza.
+
+## Como rodar o experimento
+```bash
+python 02-observability/resilient_logging.py

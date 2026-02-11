@@ -52,11 +52,15 @@ def process_billing(student_id, amount, request_id=None):
         del IDEMPOTENCY_CACHE[ikey]
         return {"status": "error", "message": str(e)}
 
-# --- CENÁRIO DE TESTE ---
-payload_aluno = {"student_id": 1, "amount": 500.0}
+if __name__ == "__main__":
+    # --- ÁREA DE TESTE ---
+    print("🧪 Iniciando Simulação de [03 - Idempotency Pattern]...\n")
+    payload_aluno = {"student_id": 1, "amount": 500.0}
 
-print("--- 1ª Tentativa (Processamento Normal) ---")
-print(process_billing(**payload_aluno))
+    print("--- 1ª Tentativa (Processamento Normal) ---")
+    print(process_billing(**payload_aluno))
 
-print("\n--- 2ª Tentativa (Imediatamente após, simulando clique duplo) ---")
-print(process_billing(**payload_aluno))
+    print("\n--- 2ª Tentativa (Imediatamente após, simulando clique duplo) ---")
+    print(process_billing(**payload_aluno))
+
+    print(f"\n--- 📈️ FIM DA SIMULAÇÃO ---")

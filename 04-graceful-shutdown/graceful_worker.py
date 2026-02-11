@@ -18,7 +18,7 @@ signal.signal(signal.SIGINT, handle_shutdown)
 signal.signal(signal.SIGTERM, handle_shutdown)
 
 def process_tasks():
-    tasks = range(1, 11)
+    tasks = range(1, 6)
     
     for task_id in tasks:
         if not keep_running:
@@ -33,8 +33,12 @@ def process_tasks():
         print(f"[WORKER] Boleto #{task_id} finalizado com sucesso.")
 
     print("[SISTEMA] Todas as tarefas críticas foram salvas. Saindo agora com segurança.")
+    print(f"\n--- 📈️ FIM DA SIMULAÇÃO ---")
     sys.exit(0)
 
-# --- EXECUÇÃO ---
-print("Simulando Worker de Faturamento. Pressione Ctrl+C para testar o Shutdown Suave.")
-process_tasks()
+if __name__ == "__main__":
+    # --- ÁREA DE TESTE ---
+    print("🧪 Iniciando Simulação de [04 - Graceful Shutdown]...\n")
+
+    print("Simulando Worker de Faturamento. Pressione 👉️ Ctrl+C para testar o Shutdown Suave.")
+    process_tasks()

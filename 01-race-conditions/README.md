@@ -7,3 +7,7 @@ Em sistemas que processam pagamentos simultâneos, pode ocorrer uma "Condição 
 - **Área Crítica:** Identificar trechos de código que manipulam recursos compartilhados.
 - **Mutual Exclusion (Mutex):** Uso de `Lock` para garantir que apenas um processo altere o dado por vez.
 - **Atomicidade:** Garantir que uma transação ocorra por completo ou não ocorra.
+
+## Como rodar o experimento
+```bash
+python 01-race-conditions/secure_implementation.py

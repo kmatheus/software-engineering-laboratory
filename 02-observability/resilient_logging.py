@@ -7,7 +7,7 @@ from datetime import datetime
 class JSONFormatter(logging.Formatter):
     def format(self, record):
         log_record = {
-            "timestamp": datetime.utcnow().isoformat(),
+            "timestamp": datetime.now().isoformat(),
             "level": record.levelname,
             "message": record.getMessage(),
             "context": record.__dict__.get("context", {})
@@ -61,4 +61,10 @@ def process_with_retry(student_id, amount, max_retries=3):
 
     return success
 
-process_with_retry(student_id=99, amount=250.0)
+if __name__ == "__main__":
+    # --- ÁREA DE TESTE ---
+    print("🧪 Iniciando Simulação de [02 - Observability & Resiliency]...\n")
+
+    process_with_retry(student_id=99, amount=250.0)
+    
+    print(f"\n--- 📈️ FIM DA SIMULAÇÃO ---")

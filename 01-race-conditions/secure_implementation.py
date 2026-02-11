@@ -25,16 +25,19 @@ class BankAccount:
         
         # O Lock é liberado automaticamente para a próxima thread
 
-# Simulação
-account = BankAccount(Decimal("100.00"))
+if __name__ == "__main__":
+    # --- ÁREA DE TESTE ---
+    print("🧪 Iniciando Simulação de [01 - Race Conditions & Data Integrity]...\n")
 
-first_thread = threading.Thread(target=account.withdraw, args=(Decimal("60.00"), "Thread A"))
-second_thread = threading.Thread(target=account.withdraw, args=(Decimal("60.00"), "Thread B"))
+    account = BankAccount(Decimal("100.00"))
 
-first_thread.start()
-second_thread.start()
+    first_thread = threading.Thread(target=account.withdraw, args=(Decimal("60.00"), "Thread A"))
+    second_thread = threading.Thread(target=account.withdraw, args=(Decimal("60.00"), "Thread B"))
 
-first_thread.join()
-second_thread.join()
+    first_thread.start()
+    second_thread.start()
 
-print(f"\n--- RESULTADO FINAL SEGURO: R$ {account.balance} ---")
+    first_thread.join()
+    second_thread.join()
+
+    print(f"\n--- 📈️ RESULTADO FINAL (SEGURO) DA SIMULAÇÃO: R$ {account.balance} ---")

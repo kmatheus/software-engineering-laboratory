@@ -10,3 +10,7 @@ Em sistemas financeiros, retentativas automáticas ou múltiplos cliques podem g
     3. **Execute:** Realizar a transação pesada.
     4. **Update:** Guardar o resultado final para responder requisições futuras instantaneamente.
 - **Fail-safe:** Remoção da chave de trava em caso de falha para permitir recuperação.
+
+## Como rodar o experimento
+```bash
+python 03-idempotency/idempotent_engine.py
