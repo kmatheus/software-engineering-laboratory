@@ -28,3 +28,12 @@ stateDiagram-v2
 ```bash
 python 04-graceful-shutdown/graceful_worker.py
 ```
+
+## 🖥️ Resultado no Terminal
+Aqui está a evidência da execução garantindo que recursos sejam liberados e logs finais sejam gravados:
+
+1 - Simulação com Processamento Interrompido
+![Print do Terminal](./terminal_output_interrupted.png)
+
+2 - Simulação com Processamento Finalizado
+![Print do Terminal](./terminal_output.png)

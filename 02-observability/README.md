@@ -33,3 +33,8 @@ Implementei a estratégia de **Backoff Exponencial** para as retentativas. Em ve
 ```bash
 python 02-observability/resilient_logging.py
 ```
+
+## 🖥️ Resultado no Terminal
+Aqui está a evidência da execução garantindo a resiliência e log de cada processamento:
+
+![Print do Terminal](./terminal_output.png)

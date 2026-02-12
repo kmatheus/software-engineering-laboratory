@@ -37,3 +37,8 @@ sequenceDiagram
 ```bash
 python 01-race-conditions/secure_implementation.py
 ```
+
+## 🖥️ Resultado no Terminal
+Evidência da execução garantindo a integridade:
+
+![Print do Terminal](./terminal_output.png)

@@ -34,3 +34,8 @@ flowchart TD
 ```bash
 python 03-idempotency/idempotent_engine.py
 ```
+
+## 🖥️ Resultado no Terminal
+Aqui está a evidência da execução garantindo a consistência para requisições repetidas:
+
+![Print do Terminal](./terminal_output.png)
