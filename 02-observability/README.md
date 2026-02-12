@@ -3,6 +3,24 @@
 ## O Problema
 Logs de texto simples são difíceis de analisar em larga escala. Além disso, sistemas que não tentam se recuperar de falhas temporárias (retries) são frágeis.
 
+## 📊 Visualização do Fluxo (Retry & Backoff)
+```mermaid
+graph TD
+    Start((Início)) --> Attempt[Tentativa N]
+    Attempt --> CallAPI[Chamada API Externa]
+    CallAPI -- Sucesso --> LogSuccess[Log INFO: Sucesso + Latência]
+    LogSuccess --> End((Fim))
+    
+    CallAPI -- Falha --> LogWarn[Log WARNING: Falha Temporária]
+    LogWarn --> CheckRetry{Tentativas < Max?}
+    CheckRetry -- Sim --> CalcBackoff[Cálculo Backoff: 2^N]
+    CalcBackoff --> Wait[Wait Time]
+    Wait --> Attempt
+    
+    CheckRetry -- Não --> LogError[Log ERROR: Falha Crítica]
+    LogError --> End
+```
+
 ## O que foi aprendido:
 - **Structured Logging:** Uso de formato JSON para facilitar a busca e indexação de logs.
 - **Contextualização:** Injeção de metadados (`student_id`, `attempt`) para rastrear o fluxo completo.
@@ -14,3 +32,4 @@ Implementei a estratégia de **Backoff Exponencial** para as retentativas. Em ve
 ## Como rodar o experimento
 ```bash
 python 02-observability/resilient_logging.py
+```
