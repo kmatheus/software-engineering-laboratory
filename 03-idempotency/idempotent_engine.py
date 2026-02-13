@@ -1,6 +1,23 @@
+import os
 import time
 import hashlib
 import json
+import sys
+from pathlib import Path
+
+# Adiciona a raiz do projeto ao path para localizar a pasta /utils
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# project_root = Path(__file__).parent.parent  # sobe de 03-idempotency/ para a raiz
+# sys.path.insert(0, str(project_root))
+
+import logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='⏱️  %(asctime)s - %(message)s',
+    datefmt='%H:%M:%S',
+    force=True
+)
+from utils.decorators import timer
 
 DATABASE = {}
 
@@ -14,6 +31,7 @@ def generate_idempotency_key(payload):
     dump = json.dumps(payload, sort_keys=True)
     return hashlib.md5(dump.encode()).hexdigest()
 
+@timer(log_args=False)
 def process_billing(student_id, amount, request_id=None):
     # Se não vier um ID do front-end, nós geramos um baseado nos dados
     payload = {"student_id": student_id, "amount": amount}
@@ -55,12 +73,12 @@ def process_billing(student_id, amount, request_id=None):
 if __name__ == "__main__":
     # --- ÁREA DE TESTE ---
     print("🧪 Iniciando Simulação de [03 - Idempotency Pattern]...\n")
-    payload_aluno = {"student_id": 1, "amount": 500.0}
+    payload = {"student_id": 1, "amount": 500.0}
 
     print("--- 1ª Tentativa (Processamento Normal) ---")
-    print(process_billing(**payload_aluno))
+    print(process_billing(**payload))
 
     print("\n--- 2ª Tentativa (Imediatamente após, simulando clique duplo) ---")
-    print(process_billing(**payload_aluno))
+    print(process_billing(**payload))
 
     print(f"\n--- 📈️ FIM DA SIMULAÇÃO ---")
